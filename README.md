@@ -20,7 +20,7 @@ in other case ``> 0``, means you locahost support virtualization, but also must 
 in the BIOS. Once it is assured procced to install ``kvm`` (https://www.linux-kvm.org/page/Downloads).
 
 Next to complete the environment and reproduce the ``kubernetes cluster``, 
-with the use of ``Vagrant`` just install it (https://www.vagrantup.com/) on your Laptop and must be 
+with the use of ``Vagrant`` just install it (https://www.vagrantup.com/) on your localhost and must be 
 installed ``Ansible`` also (http://docs.ansible.com/ansible/latest/intro_installation.html).
 
 In the other hand to use ``kvm`` to setup kubernetes cluster nodes, must be installed the ``vagrant libvirt provider``,
@@ -33,13 +33,13 @@ one fine, it is going to be used later, otherwise proceed to ``Generate SSH Keys
 
 ## 3. Setup you kubernetes cluster
 
-* In the laptop just clone the repository   
+* In the localhost just clone the repository   
    ``git clone https://github.com/jvalderrama/k8s-cluster.git``
 
 * Go inside the folder k8s-cluster  
    ``cd k8s-cluster``
 
-* Set your ``Publis RSA Key`` in the script ``scripts/prepare_cluster.py``
+* Set your ``Publis RSA Key`` in the script ``scripts/prepare_cluster.py``, generally it is located in ~/.ssh/id_rsa.pub
 
 * Start up the ``Kubernetes Cluster``  
    ``vagrant up --provider libvirt``
