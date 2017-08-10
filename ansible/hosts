@@ -1,0 +1,9 @@
+[master]
+10.10.10.51
+[minions]
+10.10.10.52
+10.10.10.53
+[cluster]
+10.10.10.51 ansible_host=master
+10.10.10.52 ansible_host=minion-1
+10.10.10.53 ansible_host=minion-2

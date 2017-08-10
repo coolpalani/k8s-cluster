@@ -1,0 +1,34 @@
+---
+# kubedns configuration
+
+- name: copy skydns-svc.yml
+  copy: src=skydns-svc.yml dest=/tmp/skydns-svc.yml mode=0664
+
+- name: copy skydns-rc.yml
+  copy: src=skydns-rc.yml dest=/tmp/skydns-rc.yml mode=0664
+
+- name: Check if dns exists
+  shell: kubectl get pods --all-namespaces | grep -c dns
+  register: dns_exists
+  ignore_errors: True
+
+- name: Create skydns-svc
+  shell: kubectl create -f /tmp/skydns-svc.yml
+  when: dns_exists.stdout != "1"
+
+- name: Create skydns-rc
+  shell: kubectl create -f /tmp/skydns-rc.yml
+  when: dns_exists.stdout != "1"
+# DASHBOARD
+
+- name: Add kubernetes-dashboard.yaml to path
+  copy: src=kubernetes-dashboard.yml dest=/tmp/kubernetes-dashboard.yml mode=0664
+
+- name: Check if Kubernetes Dashboard exists
+  shell: kubectl get pods --all-namespaces | grep -c dashboard
+  register: dashboard_exist
+  ignore_errors: True
+
+- name: Create Kubernetes Dashboard
+  shell: kubectl create -f /tmp/kubernetes-dashboard.yml
+  when: dashboard_exist.stdout != "1"
