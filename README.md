@@ -62,7 +62,7 @@ Now check the entire cluster with the next tips
 
 The above command must be show someting similar to:  
    
->Kubernetes master is running at http://localhost:8080 
+>Kubernetes master is running at http://localhost:8080   
 >KubeDNS is running at http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-dns
 
 ## 5.Credits
