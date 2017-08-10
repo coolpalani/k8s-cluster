@@ -9,6 +9,7 @@ to automatically have a ready and functional **kubernetes cluster** in less than
 * Localhost machine with Linux distribution or OS Mac
 * KVM
 * Vagrant 1.8.1 or higher
+* Vagrant libvirt plugin for KVM
 * Ansible 2.2.1 or higher
 
 ## 2. Prepare your localhost environment
@@ -21,6 +22,10 @@ in the BIOS. Once it is assured procced to install ``kvm`` (https://www.linux-kv
 Next to complete the environment and reproduce the ``kubernetes cluster``, 
 with the use of ``Vagrant`` just install it (https://www.vagrantup.com/) on your Laptop and must be 
 installed ``Ansible`` also (http://docs.ansible.com/ansible/latest/intro_installation.html).
+
+In the other hand to use ``kvm`` to setup kubernetes cluster nodes, must be installed the ``vagrant libvirt provider``,
+it is a ``plugin`` for ``vagrant`` to use with ``libvirt`` API to manage ``kvm`` as infraestructure provider.
+(https://github.com/vagrant-libvirt/vagrant-libvirt#installation) 
 
 Finally we need a ``Public RSA Key`` to inject in the ``Kubernetes Cluster`` nodes, therefore if you have already 
 one fine, it is going to be used later, otherwise proceed to ``Generate SSH Keys`` in your localhost
@@ -37,7 +42,7 @@ one fine, it is going to be used later, otherwise proceed to ``Generate SSH Keys
 * Set your ``Publis RSA Key`` in the script ``scripts/prepare_cluster.py``
 
 * Start up the ``Kubernetes Cluster``  
-   ``vagrant up``
+   ``vagrant up --provider libvirt``
 
 That's all ...
 
@@ -67,4 +72,4 @@ The above command must be show someting similar to:
 
 ## 5.Credits
 
-Thanks also to my partners @@Noel_illo and @M4nu_sL :)
+Thanks also to my partners @Noel_illo and @M4nu_sL :)
