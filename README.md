@@ -72,4 +72,4 @@ The above command must be show someting similar to:
 
 ## 5.Credits
 
-Thanks also to my partners @Noel_illo (Noel) and @M4nu_sL (Manu) for your great job :)
+Thanks also to my partners @Noel_illo (Noel Ruiz Lopez) and @M4nu_sL (Manuel Sanchez Lopez) for your great job :)
