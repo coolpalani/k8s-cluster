@@ -28,15 +28,15 @@ one fine, it is going to be used later, otherwise proceed to ``Generate SSH Keys
 
 ## 3. Setup you kubernetes cluster
 
-* In the laptop just clone the repository 
+* In the laptop just clone the repository   
    ``git clone https://github.com/jvalderrama/k8s-cluster.git``
 
-* Go inside the folder k8s-cluster
+* Go inside the folder k8s-cluster  
    ``cd k8s-cluster``
 
 * Set your ``Publis RSA Key`` in the script ``scripts/prepare_cluster.py``
 
-* Start up the ``Kubernetes Cluster``
+* Start up the ``Kubernetes Cluster``  
    ``vagrant up``
 
 That's all ...
@@ -45,26 +45,26 @@ That's all ...
 
 Now check the entire cluster with the next tips
 
-* Go to minion-1 node and check nodes
-  ``vagrant ssh minion-1``
+* Go to minion-1 node and check nodes  
+  ``vagrant ssh minion-1``  
   ``kubectl -s http://10.0.0.39:8080 get nodes`` it must show the two minions nodes ready and working
 
-* Go to minion-2 node and check nodes
-  ``vagrant ssh minion-2``
-  ``kubectl config set-cluster test-cluster --server=http://10.10.10.51:8080``
-  ``kubectl config set-context test-cluster --cluster=test-cluster``
-  ``kubectl config use-context test-cluster``
+* Go to minion-2 node and check nodes  
+  ``vagrant ssh minion-2``  
+  ``kubectl config set-cluster test-cluster --server=http://10.10.10.51:8080``  
+  ``kubectl config set-context test-cluster --cluster=test-cluster``  
+  ``kubectl config use-context test-cluster``  
   ``kubectl get nodes`` it must show the two minions nodes ready and working
 
-* Go to master node and check nodes
-  ``vagrant ssh master``
-  ``kubectl cluster-info``
+* Go to master node and check nodes  
+  ``vagrant ssh master``  
+  ``kubectl cluster-info``  
 
-The above command must be show someting similar to:
+The above command must be show someting similar to:  
    
 >Kubernetes master is running at http://localhost:8080 
 >KubeDNS is running at http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-dns
 
 ## 5.Credits
 
-Thanks also to my partners @@Noel_illo and @M4nu_sL : )
+Thanks also to my partners @@Noel_illo and @M4nu_sL :)
