@@ -2,12 +2,11 @@
 - name: Http | Intalling Http client library 
   pip:
     name: httplib2
-
-- name: General | Installing general tools
-  action: yum pkg={{ item }} state=installed
-  with_items:
-    - xauth
-    - gedit
+#- name: General | Installing general tools
+#  action: yum pkg={{ item }} state=installed
+#  with_items:
+#    - xauth
+#    - gedit
 
 - name: Containers | Installing dockers
   action: yum pkg={{ item }} state=installed

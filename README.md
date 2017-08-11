@@ -2,11 +2,11 @@
 
 Deploy kubernetes on the fly, the project creates a ``master node and two minions nodes``,
 it uses **Vagrant** with **KVM** as infrastecture provider (IaaS) and **Ansible** as configuration manager
-to automatically have a ready and functional **kubernetes cluster** in less than 10 minutes.
+to automatically have a ready and functional **kubernetes cluster** in less than 15 minutes.
 
 ## 1. Pre-requisites
 
-* Localhost machine with Linux distribution or OS Mac
+* Localhost machine with Linux distribution or Mac OS
 * KVM
 * Vagrant 1.8.1 or higher
 * Vagrant libvirt plugin for KVM
@@ -15,7 +15,7 @@ to automatically have a ready and functional **kubernetes cluster** in less than
 ## 2. Prepare your localhost environment
 
 The first thing is check that you localhost support virtualization, just type 
-``egrep -c '(vmx|svm)' /proc/cpuinfo`` if the result is ``0``, your locahost does not support it, 
+``egrep -c '(vmx|svm)' /proc/cpuinfo`` if the result is ``0``, your localhost does not support it, 
 in other case ``> 0``, means you locahost support virtualization, but also must be ensured it is enable 
 in the BIOS. Once it is assured procced to install ``kvm`` (https://www.linux-kvm.org/page/Downloads).
 
@@ -31,7 +31,7 @@ Finally we need a ``Public RSA Key`` to inject in the ``Kubernetes Cluster`` nod
 one fine, it is going to be used later, otherwise proceed to ``Generate SSH Keys`` in your localhost
 (https://www.cyberciti.biz/faq/linux-unix-generating-ssh-keys/)
 
-## 3. Setup you kubernetes cluster
+## 3. Setup your kubernetes cluster
 
 * In the localhost just clone the repository   
    ``git clone https://github.com/jvalderrama/k8s-cluster.git``
@@ -52,7 +52,7 @@ Now check the entire cluster with the next tips
 
 * Go to minion-1 node and check nodes  
   ``vagrant ssh minion-1``  
-  ``kubectl -s http://10.0.0.39:8080 get nodes`` it must show the two minions nodes ready and working
+  ``kubectl -s http://10.10.10.51:8080 get nodes`` it must show the two minions nodes ready and working
 
 * Go to minion-2 node and check nodes  
   ``vagrant ssh minion-2``  

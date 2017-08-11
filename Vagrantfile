@@ -5,9 +5,6 @@ require 'json'
 require 'fileutils'
 
 flag = 0
-display_port = 10
-
-#system('./ssh_hosts_preconfig.sh')
 
 Vagrant.configure(2) do |config|
     servers = JSON.parse(File.read(File.join(File.dirname(__FILE__), 'infraestructure.json')))
@@ -42,7 +39,6 @@ Vagrant.configure(2) do |config|
 		  systemctl restart network
 	          echo "root:root" | chpasswd
 		SHELL
-        display_port +=  1
         flag += 1 
         if flag == servers.length
           srv.vm.provision :ansible do |ansible|
