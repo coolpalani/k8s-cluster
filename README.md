@@ -6,7 +6,7 @@ to automatically have a ready and functional **kubernetes cluster** in less than
 
 ## 1. Pre-requisites
 
-* Localhost machine with Linux distribution or Mac OS
+* Localhost machine with Linux distribution
 * KVM
 * Vagrant 1.8.1 or higher
 * Vagrant libvirt plugin for KVM
