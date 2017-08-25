@@ -9,7 +9,6 @@
 
 - name: Check if dns exists
   shell: kubectl get pods --all-namespaces | grep -c dns
-  register: dns_exists
   ignore_errors: True
 
 - name: Create skydns-svc
@@ -26,7 +25,6 @@
 
 - name: Check if Kubernetes Dashboard exists
   shell: kubectl get pods --all-namespaces | grep -c dashboard
-  register: dashboard_exist
   ignore_errors: True
 
 - name: Create Kubernetes Dashboard

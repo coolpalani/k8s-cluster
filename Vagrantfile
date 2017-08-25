@@ -17,7 +17,6 @@ Vagrant.configure(2) do |config|
 	        srv.ssh.forward_x11 = true
 	        srv.vm.hostname = server['name']
  
-                srv.vm.network "forwarded_port", guest: 8001, host: 8001
   	        srv.vm.network 'private_network', :ip => server['ip_addr']
 
 
