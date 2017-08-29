@@ -1,18 +1,21 @@
 ---
-- name: Http | Intalling Http client library 
-  pip:
-    name: httplib2
-#- name: General | Installing general tools
-#  action: yum pkg={{ item }} state=installed
-#  with_items:
-#    - xauth
-#    - gedit
-
 - name: Containers | Installing dockers
   action: yum pkg={{ item }} state=installed
   with_items:
     - docker
     - docker-logrotate
+
+- name: Start docker service
+  service: name=docker state=started
+
+- name: Create docker group
+  shell: groupadd docker
+
+- name: Add your vagrant user to the docker group
+  shell: gpasswd -a vagrant docker
+
+- name: Restart docker service
+  service: name=docker state=restarted
 
 - name: Cluster Orchestrator | Installing kubernetes
   action: yum pkg={{ item }} state=installed

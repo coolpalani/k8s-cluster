@@ -1,9 +1,4 @@
 ---
-#- name: Add master to hosts file
-#  lineinfile:
-#    dest: /etc/hosts
-#    regexp: ''
-#    line: '127.0.0.1 master'
 - name: Insert master to network configuration file
   lineinfile:
     dest: /etc/sysconfig/network
