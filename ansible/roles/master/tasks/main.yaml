@@ -3,7 +3,7 @@
   lineinfile:
     dest: /etc/sysconfig/network
     insertafter: EOF
-    line: 'hostname master'
+    line: 'hostname {{ master_hostname }}'
 
 - name: Restart network
   service: name=network state=restarted
@@ -16,16 +16,16 @@
 #    state: latest
 
 - name: Configure Kube API Master 
-  copy: src=apiserver_config dest=/etc/kubernetes/apiserver mode=0664
+  template: src=apiserver_config.j2 dest=/etc/kubernetes/apiserver mode=0664
 
 - name: Configure Controller Manager
-  copy: src=controller_manager_config dest=/etc/kubernetes/controller-manager mode=0664
+  template: src=controller_manager_config.j2 dest=/etc/kubernetes/controller-manager mode=0664
 
 - name: Creates directory for flannel key
   file: path=/flannel/network state=directory mode=0755
 
 - name: Copy Flannel json
-  copy: src=flannel-config.json dest=/flannel/network mode=0777
+  template: src=flannel_config.j2 dest=/flannel/network/flannel_config.json mode=0777
 
 - name: Enable and Restart kube-apiserver
   service: name=kube-apiserver enabled=yes state=restarted
@@ -41,12 +41,13 @@
 
 - name: Ask for Flanneld key
   uri:
-    url: "http://master.com:2379/v2/keys/flannel/network/config"
+    url: "http://{{ master_hostname }}.com:2379/v2/keys/flannel/network/config"
     method: PUT
-    body: "value={{ lookup('file','flannel-config.json') }}"
+    body: "value={{ lookup('template','./flannel_config.j2') | to_nice_json}}"
     status_code: 201, 200
     return_content: yes
-    HEADER_Content-Type: "application/x-www-form-urlencoded"
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
     dest: "/flannel/network/config"
   ignore_errors: True
 

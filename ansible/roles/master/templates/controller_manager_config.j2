@@ -1,5 +1,5 @@
 # Comma separated list of minions
-KUBELET_ADDRESSES="--machines=minion-1, minion-2"
+KUBELET_ADDRESSES="--machines={{ minions_hostnames }}"
 
 # Add you own!
 KUBE_CONTROLLER_MANAGER_ARGS=""

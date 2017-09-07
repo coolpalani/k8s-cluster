@@ -8,7 +8,7 @@ KUBELET_ADDRESS="--address=0.0.0.0"
 KUBELET_HOSTNAME="--hostname_override={{ ansible_hostname }}"
 
 # location of the api-server
-KUBELET_API_SERVER="--api_servers=http://master.com:8080"
+KUBELET_API_SERVER="--api_servers=http://{{ master_hostname }}.com:{{ kube_api_port }}"
 
 # Add your own!
-KUBELET_ARGS="--cluster-dns=10.254.254.254 --cluster-domain=cluster.local"
+KUBELET_ARGS="--cluster-dns={{ args_cluster_dns }} --cluster-domain={{ args_cluster_domain }}"
