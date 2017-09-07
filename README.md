@@ -1,8 +1,11 @@
-# KUBERNETES IN A BOX - THREE NODE DEPLOYMENT
+# Kubernetes in a box - Three nodes deployment + Scaling
 
 Deploy kubernetes on the fly, the project creates a ``master node and two minions nodes``,
 it uses **Vagrant** with **KVM** as infrastecture provider (IaaS) and **Ansible** as configuration manager
 to automatically have a ready and functional **kubernetes cluster** in less than 15 minutes.
+
+As an extra the entire **kubernetes cluster** can be scalable if wished, the project has a **k8s-scale** project
+to **add a new minion** to the existing cluster.
 
 ## 1. Pre-requisites
 
@@ -70,6 +73,30 @@ The above command must be show someting similar to:
 >Kubernetes master is running at http://localhost:8080   
 >KubeDNS is running at http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-dns
 
-## 5.Credits
+## 5. Scale the existing Kubernetes Cluster
+
+Follow the next steps to scale up your entire cluster
+
+* Go inside the folder k8s-scale   
+  ``cd k8s-cluster/k8s-scale/``   
+
+* Start up the new Minion node to add in the ``Kubernetes Cluster``  
+   ``vagrant up --provider libvirt``  
+
+* Go to master node and check minion nodes (Must be appears three nodes)  
+  ``vagrant ssh master``  
+  ``kubectl get nodes``  
+
+* Deploy a new pod inside the new minion node  
+  ``Replace file in /tmp/avg-api-rc.yml in line 6 **replicas: 2** key by **replicas: 3**``  
+  ``kubectl replace rc --filename=/tmp/avg-api-rc.yml``  
+
+* Check the new pod deployed in the new minion node (Must be appears three avg-api-controller-*, one of these deployed
+  in the new minion node)  
+  ``kubectl get pods``  
+
+That's all, cluster has been scaled up !!!
+
+## 6.Credits
 
 Thanks also to my partners @Noel_illo (Noel Ruiz Lopez) and @M4nu_sL (Manuel Sanchez Lopez) for your great job :)
