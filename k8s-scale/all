@@ -3,7 +3,7 @@
 
 #General Cluster Configuration
 master_hostname: master
-minions_hostnames: minion-1, minion-2
+minions_hostnames: minion-1, minion-2, minion-3
 
 #Kubernetes API Configuration
 kubu_api_address: 0.0.0.0
